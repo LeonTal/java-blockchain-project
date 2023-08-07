@@ -21,6 +21,7 @@ public class ServerHandler {
         }
     }
 
+    // Run this to start the server
     public static void main(String[] args) throws IOException {
         ServerHandler serverHandler = new ServerHandler();
         serverHandler.startServer();
@@ -47,6 +48,7 @@ public class ServerHandler {
                 while (true) {
                     command = bufferedReader.nextLine();
                     String[] commands = command.split("~");
+                    
                     if (command.startsWith("authenticate")) {
                         if (login.authenticate(commands[1], commands[2])) {
                             printStream.println("success~You have logged in successfully");
@@ -86,5 +88,4 @@ public class ServerHandler {
             blocks.startBlock(printStream, bufferedReader);
         }
     }
-
 }
