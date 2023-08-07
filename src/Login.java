@@ -40,16 +40,17 @@ public class Login {
     public boolean authenticate(String username, String password)
             throws InvalidKeySpecException, NoSuchAlgorithmException {
         usersDataStorage = dataStorage.get(username);
+                
         if (usersDataStorage != null) {
             String currentUsersSalt = usersDataStorage.salt;
             String getUsersHash = hashPassword(password, currentUsersSalt);
+            
             if (getUsersHash.equals(usersDataStorage.hashedPassword)) {
                 return true;
             } else
                 return false;
         } else
             return false;
-
     }
 
     private static String hashPassword(String password, String salt)
@@ -92,7 +93,6 @@ public class Login {
     public String userAmount() {
         return "User: " + usersDataStorage.username + "\t" + "Crypto in Wallet: " + usersDataStorage.currencyAmount;
     }
-
 }
 
 class UsersDataStorage { // Stores information regarding a users account
