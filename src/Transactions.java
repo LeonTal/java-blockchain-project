@@ -38,19 +38,21 @@ public class Transactions {
     // Whenever a user sends currency to another user, this transaction is added to
     // a list so all transactions are viewable
     public String transferCurrency(String receiver, double amount) {
-
         if (amount < 0) {
             return ("Please enter an amount greater than 0");
         }
 
+        // Checks if you have enough currency to transfer
         if (usersDataStorage.currencyAmount < amount) {
             return ("You do not have enough currency to send.");
 
         }
+
+        // Checks if the user you're trying to send currency to exists within the current blockchain
         if (!dataStorage.containsKey(receiver)) {
             return ("This user does not exist.");
         }
-
+        
         if (usersDataStorage.currencyAmount >= amount) {
             UsersDataStorage getReceiver = dataStorage.get(receiver);
             usersDataStorage.currencyAmount -= amount;
