@@ -31,6 +31,7 @@ public class ClientHandler {
         while (loopBoolean) {
             System.out.println("Enter \"1\" to Login with an existing account, or enter \"2\" to create an account.");
             String choice = scanner.nextLine();
+            
             if (choice.equalsIgnoreCase("1")) {
                 System.out.println("Enter your username");
                 username = scanner.nextLine().replaceAll("~", "-tilde-");
@@ -42,6 +43,7 @@ public class ClientHandler {
 
                 response = bufferedReader.nextLine();
                 String[] responses = response.split("~");
+                
                 if (responses[0].equalsIgnoreCase("success")) {
                     System.out.println(responses[1]);
                     mineBlock(printStream, bufferedReader);
@@ -51,7 +53,6 @@ public class ClientHandler {
                 }
 
             } else if (choice.equalsIgnoreCase("2")) {
-
                 System.out.println("Enter your desired username: ");
                 username = scanner.nextLine().replaceAll("~", "-tilde-");
                 System.out.println("Enter your desired password: ");
@@ -62,6 +63,7 @@ public class ClientHandler {
 
                 response = bufferedReader.nextLine();
                 String[] responses = response.split("~");
+                
                 if (responses[0].equalsIgnoreCase("success")) {
                     System.out.println(responses[1]);
                 } else {
@@ -86,6 +88,7 @@ public class ClientHandler {
             System.out.println(menu);
             receiver = user.nextLine();
             printStream.println(receiver);
+            
             switch (receiver) {
                 case "1":
                     receiver = scanner.nextLine();
