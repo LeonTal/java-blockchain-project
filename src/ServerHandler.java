@@ -44,7 +44,6 @@ public class ServerHandler {
         public void run() {
             String command;
             try {
-
                 while (true) {
                     command = bufferedReader.nextLine();
                     String[] commands = command.split("~");
@@ -54,15 +53,21 @@ public class ServerHandler {
                             printStream.println("success~You have logged in successfully");
                             printStream.flush();
                             mineMenu();
-                        } else {
+                        } 
+                        
+                        else {
                             System.out.println("failure");
                             printStream.println("failed~Your login details are incorrect. Please check and try again");
                             printStream.flush();
                         }
-                    } else if (command.startsWith("create")) {
+                    } 
+                    
+                    else if (command.startsWith("create")) {
                         if (login.createAccount(commands[1], commands[2])) {
                             printStream.println("success~Account created successfully");
-                        } else {
+                        } 
+                        
+                        else {
                             printStream.println("failed~Username and password must be 3 or more characters long");
                         }
 
