@@ -31,6 +31,7 @@ public class Transactions {
         transactionVariables.sender = "Blockchain";
         transactionVariables.receiver = receiver;
         transactionVariables.amount = amount;
+        
         System.out.println("The blockchain has awarded user " + receiver + " " + amount + " for solving the block");
         transactionList.add(transactionVariables);
     }
@@ -45,7 +46,6 @@ public class Transactions {
         // Checks if you have enough currency to transfer
         if (usersDataStorage.currencyAmount < amount) {
             return ("You do not have enough currency to send.");
-
         }
 
         // Checks if the user you're trying to send currency to exists within the current blockchain
@@ -60,6 +60,7 @@ public class Transactions {
             addToTransactionList(receiver, amount);
             newTransactionVariables();
         }
+        
         System.out.println(transactionList);
         return "Transaction successful";
 
