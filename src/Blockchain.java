@@ -12,15 +12,19 @@ public class Blockchain {
     // block is considered solved.
     public static boolean hashSolved(Login login, Blocks block)
             throws InvalidKeySpecException, NoSuchAlgorithmException {
+                
         if (ConversionMethods.hexToDec(block).compareTo(Blocks.nBits()) <= 0) {
             System.out.println("Value Lower");
             System.out.println(ConversionMethods.hexToDec(block));
             System.out.println("nBits is " + Blocks.nBits());
+            
             cryptoReward(login);
             Blocks.addBlockToChain();
             block.createBlock();
             return true;
-        } else {
+        } 
+        
+        else {
             return false;
         }
     }
@@ -28,6 +32,7 @@ public class Blockchain {
     private static void cryptoReward(Login login) {
         login.usersDataStorage.currencyAmount += reward;
         Transactions.blockchainReward(login.getUser(), reward);
+        
         if (Blocks.oldList.size() % 2 == 1) {
             reward = reward / 2;
         }
