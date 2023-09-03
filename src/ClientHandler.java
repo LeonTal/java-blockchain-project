@@ -48,11 +48,15 @@ public class ClientHandler {
                     System.out.println(responses[1]);
                     mineBlock(printStream, bufferedReader);
 
-                } else {
+                } 
+                
+                else {
                     System.out.println(responses[1]);
                 }
 
-            } else if (choice.equalsIgnoreCase("2")) {
+            } 
+            
+            else if (choice.equalsIgnoreCase("2")) {
                 System.out.println("Enter your desired username: ");
                 username = scanner.nextLine().replaceAll("~", "-tilde-");
                 System.out.println("Enter your desired password: ");
@@ -66,7 +70,9 @@ public class ClientHandler {
                 
                 if (responses[0].equalsIgnoreCase("success")) {
                     System.out.println(responses[1]);
-                } else {
+                } 
+                
+                else {
                     System.out.println(responses[1]);
                 }
             }
