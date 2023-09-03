@@ -33,9 +33,12 @@ public class Blocks {
 
         if (oldListCount() == 0) {
             return "00000000000000000000";
-        } else {
+        } 
+        
+        else {
             ArrayList<BlockValues> previousBlock = oldList.get(oldList.size() - 1);
             previousBlockHash = ConversionMethods.hashToHex(ConversionMethods.hashGeneration(previousBlock.toString()));
+            
             return previousBlockHash;
         }
     }
@@ -53,6 +56,7 @@ public class Blocks {
     public static double difficultyTarget() {
         if (oldListCount() > blockCompletionCounter) {
             blockCompletionCounter++;
+            
             if (blockCompletionCounter == 3) {
                 Instant lastBlockTime = Instant.now();
                 long minutesElapsed = Duration.between(firstBlockTime, lastBlockTime).toMinutes();
@@ -71,6 +75,7 @@ public class Blocks {
                 firstBlockTime = Instant.now();
             }
         }
+        
         System.out.println(difficulty);
         return difficulty;
     }
@@ -86,16 +91,31 @@ public class Blocks {
     // final hash needs to be lower than
     // The above conversion to hex being
     // 0x1BC330000000000000000000000000000000000000000000
-    public static BigInteger nBits() {
-        String nBitHex = Integer.toHexString(nBits);
-        String storeFirstTwoHexDigits = nBitHex.substring(0, 2);
-        String getRemainingHex = nBitHex.substring(2);
-        BigInteger baseValue = new BigInteger(String.valueOf(Integer.parseInt(getRemainingHex, 16)));
-        int powerOf = Integer.parseInt(storeFirstTwoHexDigits, 16) - 3;
-        BigInteger mutliplyBy = new BigInteger("256");
-        BigInteger finalResult = baseValue.multiply(mutliplyBy.pow(powerOf));
-        return finalResult;
-    }
+    
+public static BigInteger calculateNBitsValue() {
+    // Convert nBits to hexadecimal string
+    String nBitsHex = Integer.toHexString(nBits);
+
+    // Extract the first two hex digits
+    String firstTwoHexDigits = nBitsHex.substring(0, 2);
+
+    // Extract the remaining hex digits
+    String remainingHex = nBitsHex.substring(2);
+
+    // Convert the remaining hex digits to a BigInteger
+    BigInteger baseValue = new BigInteger(String.valueOf(Integer.parseInt(remainingHex, 16)));
+
+    // Calculate the power of 256 based on the first two hex digits
+    int powerOf = Integer.parseInt(firstTwoHexDigits, 16) - 3;
+
+    // Initialize a BigInteger for 256
+    BigInteger multiplyBy = new BigInteger("256");
+
+    // Calculate the final result by multiplying baseValue by 256^powerOf
+    BigInteger finalResult = baseValue.multiply(multiplyBy.pow(powerOf));
+
+    return finalResult;
+}
 
     public static Long nonce() {
         return nonce;
@@ -122,11 +142,13 @@ public class Blocks {
             if (count.iterator().hasNext()) {
                 listCount++;
                 count.iterator().next();
+                
                 if (listCount % 100 == 0) {
                     firstTimeStampBlock = blockContents;
                 }
             }
         }
+        
         return listCount;
     }
 
@@ -145,6 +167,7 @@ public class Blocks {
     private static void updateBlock() { // Updates the block every second (changes time every second)
         timer = new Timer();
         blockValues.currentDateTime = currentDateTime();
+        
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
