@@ -16,6 +16,7 @@ public class Login {
         byte[] saltBytes = new byte[4];
         getRandom.nextBytes(saltBytes);
         String encodeSalt = Base64.getEncoder().encodeToString(saltBytes);
+        
         return encodeSalt;
     }
 
@@ -31,7 +32,9 @@ public class Login {
                                                                                          // the database
         if (username.length() < 3 || password.length() < 3) {
             return false;
-        } else {
+        } 
+        
+        else {
             insertUserToDatabase(usersDataStorage); // Saves the user into the database
             return true;
         }
@@ -47,10 +50,12 @@ public class Login {
             
             if (getUsersHash.equals(usersDataStorage.hashedPassword)) {
                 return true;
-            } else
-                return false;
-        } else
-            return false;
+            } 
+            
+            else return false;
+        } 
+        
+        else return false;
     }
 
     private static String hashPassword(String password, String salt)
@@ -64,6 +69,7 @@ public class Login {
 
         byte[] hashBytes = secretKeyFactory.generateSecret(PBEKeySpec).getEncoded();
         String finalHash = Base64.getEncoder().encodeToString(hashBytes);
+                
         return finalHash;
     }
 
@@ -72,7 +78,9 @@ public class Login {
     private void insertUserToDatabase(UsersDataStorage user) {
         if (dataStorage.containsKey(user.username)) {
             System.out.println("There is already a user with that username. Please try another name.");
-        } else {
+        } 
+        
+        else {
             dataStorage.put(user.username, user);
             newUserDataStorage();
         }
